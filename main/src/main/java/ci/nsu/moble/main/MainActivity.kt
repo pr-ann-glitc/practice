@@ -36,6 +36,13 @@ import ci.nsu.moble.main.ui.theme.PracticeTheme
 import ci.nsu.moble.main.ui.theme.Purple
 import ci.nsu.moble.main.ui.theme.Red
 import ci.nsu.moble.main.ui.theme.Yellow
+import ci.nsu.moble.main.ui.theme.blueText
+import ci.nsu.moble.main.ui.theme.darkblueText
+import ci.nsu.moble.main.ui.theme.greenText
+import ci.nsu.moble.main.ui.theme.orangeText
+import ci.nsu.moble.main.ui.theme.purpleText
+import ci.nsu.moble.main.ui.theme.redText
+import ci.nsu.moble.main.ui.theme.yellowText
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -74,13 +81,13 @@ fun Main() {
     )
 
     val colorTextCollection = mapOf(
-        "red" to Color(0xFFFFC0CB),
-        "orange" to Color(0xFF800000),
-        "yellow" to Color(0xFFDAA520),
-        "green" to Color(0xFF006400),
-        "blue" to Color(0xFF0000FF),
-        "darkblue" to Color(0xFFADD8E6),
-        "purple" to Color(0xFFE6E6FA)
+        "red" to redText,
+        "orange" to orangeText,
+        "yellow" to yellowText,
+        "green" to greenText,
+        "blue" to blueText,
+        "darkblue" to darkblueText,
+        "purple" to purpleText
     )
     Column(modifier = Modifier.fillMaxWidth().
         padding(20.dp),
@@ -92,7 +99,7 @@ fun Main() {
         Button(onClick = {
                 buttonColor.value = colorButtonCollection.getOrDefault(userColor.value.lowercase(), Color.Gray)
                 textButtonColor.value = colorTextCollection.getOrDefault(userColor.value.lowercase(), Color.Black)
-            if (colorButtonCollection.get(userColor.value.lowercase()) == null)
+            if (!colorButtonCollection.containsKey(userColor.value.lowercase()))
                 Log.e("Main", "Color not found")
         },
             Modifier.fillMaxWidth().padding(10.dp),
@@ -105,81 +112,20 @@ fun Main() {
             Text(label.value)
         }
         Spacer(modifier = Modifier.height(20.dp))
-        Text("Red",
-            modifier = Modifier.
-            drawBehind {
-                drawRoundRect(
-                    color = Red,
-                    cornerRadius = CornerRadius(10.dp.toPx())
-                )
-            }.fillMaxWidth().
-            padding(15.dp),
-            color = Color(0xFFFFC0CB),
+
+        for (color in colorButtonCollection)
+        {
+            Text (color.key.uppercase(),
+                modifier = Modifier.
+                drawBehind {
+                    drawRoundRect(
+                        color = color.value,
+                        cornerRadius = CornerRadius(10.dp.toPx())
+                    )
+                }.fillMaxWidth().padding(15.dp),
+                color = colorTextCollection.getOrDefault(color.key, Color.White)
             )
-        Text("Orange",
-            modifier = Modifier.
-            drawBehind {
-                drawRoundRect(
-                    color = Orange,
-                    cornerRadius = CornerRadius(10.dp.toPx())
-                )
-            }.fillMaxWidth().padding(15.dp),
-            color = Color(0xFF800000)
-        )
-        Text("Yellow",
-            modifier = Modifier.
-            drawBehind {
-                drawRoundRect(
-                    color = Yellow,
-                    cornerRadius = CornerRadius(10.dp.toPx())
-                )
-            }.fillMaxWidth().padding(15.dp),
-            color = Color(0xFFDAA520)
-        )
-        Text("Green",
-            modifier = Modifier.
-            drawBehind {
-                drawRoundRect(
-                    color = Green,
-                    cornerRadius = CornerRadius(10.dp.toPx())
-                )
-            }.fillMaxWidth().padding(15.dp),
-            color = Color(0xFF006400)
-
-        )
-        Text("Blue",
-            modifier = Modifier.
-            drawBehind {
-                drawRoundRect(
-                    color = Blue,
-                    cornerRadius = CornerRadius(10.dp.toPx())
-                )
-            }.fillMaxWidth().padding(15.dp),
-            color = Color(0xFF0000FF)
-
-        )
-        Text("DarkBlue",
-            modifier = Modifier.
-            drawBehind {
-                drawRoundRect(
-                    color = DarkBlue,
-                    cornerRadius = CornerRadius(10.dp.toPx())
-                )
-            }.fillMaxWidth().padding(15.dp),
-            color = Color(0xFFADD8E6)
-
-        )
-        Text("Purple",
-            modifier = Modifier.
-            drawBehind {
-                drawRoundRect(
-                    color = Purple,
-                    cornerRadius = CornerRadius(10.dp.toPx())
-                )
-            }.fillMaxWidth().padding(15.dp),
-            color = Color(0xFFE6E6FA)
-
-        )
+        }
     }
 }
 
