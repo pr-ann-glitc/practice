@@ -28,7 +28,7 @@ class SecondActivity : ComponentActivity() {
                         horizontalAlignment = Alignment.CenterHorizontally,
                         verticalArrangement = Arrangement.Top
                     ) {
-                        Greeting2(
+                        MessageFromMainActivity(
                             message = message,
                         )
                     }
@@ -40,7 +40,7 @@ class SecondActivity : ComponentActivity() {
 }
 
 @Composable
-fun Greeting2(message: String) {
+fun MessageFromMainActivity(message: String) {
     Text(
         text = "This is second activity",
     )
