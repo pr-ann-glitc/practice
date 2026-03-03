@@ -48,7 +48,7 @@ fun OpenSecondActivity(modifier: Modifier = Modifier) {
         verticalArrangement = Arrangement.Center) {
         val context = LocalContext.current
         val text = remember{mutableStateOf("")}
-        TextField(text.value, label = {Text("Сообщение в SecondActivity")} ,onValueChange = {newText -> text.value = newText})
+        TextField(text.value, label = {Text("Message to the SecondActivity")} ,onValueChange = {newText -> text.value = newText})
         Button(onClick = {
             val intent = Intent(context, SecondActivity::class.java)
             intent.putExtra("message",text.value)
@@ -58,7 +58,7 @@ fun OpenSecondActivity(modifier: Modifier = Modifier) {
                 contentColor = Color.White,
                 containerColor = Color.Black
             )) {
-            Text("Перейти на вторую activity")
+            Text("Go to SecondActivity")
 
         }
     }
