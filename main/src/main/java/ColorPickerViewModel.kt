@@ -4,14 +4,13 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
-
 data class ColorUiState(
     val red: Int = 128,
     val green: Int = 128,
     val blue: Int = 128
 ) {
 
-    val color: Color get() = Color(red, green, blue)
+    val pickedColor: Color get() = Color(red, green, blue)
     val hexCode: String get() = "#${red.toString(16)}${green.toString(16)}${blue.toString(16)}"
 }
 
