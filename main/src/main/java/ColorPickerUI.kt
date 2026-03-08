@@ -1,0 +1,38 @@
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material3.Button
+import androidx.compose.material3.Slider
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.core.view.ViewCompat
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
+
+@Composable
+fun MyScreen(
+    viewModel: ColorPickerViewModel = ColorPickerViewModel()
+) {
+    val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+    var sliderPosition by remember{mutableStateOf(0f)}
+    Column(modifier = Modifier.fillMaxSize()) {
+        // Отображение uiState
+//        Text(text = uiState.someProperty)
+        // Вызов методов ViewModel
+//        Button(onClick = { viewModel.doSomething() }) {
+//            Text("Кнопка")
+//        }
+
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun ShowMyScreen() {
+    MyScreen()
+}
